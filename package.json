@@ -1,6 +1,6 @@
 {
   "name": "ckeditor5-mathtype-with-extra-plugins",
-  "version": "1.5.10",
+  "version": "1.5.16",
   "description": "Ckeditor5 build classic with support of mathtype plugin.",
   "keywords": [
     "ckeditor5-build",
@@ -44,7 +44,7 @@
     "@ckeditor/ckeditor5-remove-format": "^15.0.0",
     "@ckeditor/ckeditor5-table": "^15.0.0",
     "@ckeditor/ckeditor5-theme-lark": "^15.0.0",
-    "@wiris/mathtype-ckeditor5": "7.12.0",
+    "@wiris/mathtype-ckeditor5": "7.17.1",
     "ckeditor5-upload-strapi": "^1.0.2",
     "eslint": "^5.5.0",
     "eslint-config-ckeditor5": "^2.0.0",
