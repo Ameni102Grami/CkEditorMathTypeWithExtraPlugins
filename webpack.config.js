@@ -1,80 +1,76 @@
-const path = require("path");
-const webpack = require("webpack");
-const { bundler, styles } = require("@ckeditor/ckeditor5-dev-utils");
-const CKEditorWebpackPlugin = require("@ckeditor/ckeditor5-dev-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
+const path = require( 'path' );
+const { styles } = require( '@ckeditor/ckeditor5-dev-utils' );
+const CKEditorWebpackPlugin = require( '@ckeditor/ckeditor5-dev-webpack-plugin' );
+const TerserPlugin = require( 'terser-webpack-plugin' );
 
 module.exports = {
-	devtool: "source-map",
+	devtool: 'source-map',
 	performance: { hints: false },
 
-	entry: path.resolve(__dirname, "src", "ckeditor.js"),
+	entry: path.resolve( __dirname, 'src', 'ckeditor.js' ),
 
 	output: {
-		library: "ClassicEditor",
-		path: path.resolve(__dirname, "build"),
-		filename: "ckeditor.js",
-		libraryTarget: "umd",
-		libraryExport: "default",
+		library: 'ClassicEditor',
+		path: path.resolve( __dirname, 'build' ),
+		filename: 'ckeditor.js',
+		libraryTarget: 'umd',
+		libraryExport: 'default'
 	},
 
 	optimization: {
 		minimizer: [
-			new TerserPlugin({
+
+			new TerserPlugin( {
 				sourceMap: true,
 				terserOptions: {
 					output: {
-						comments: /^!/,
-					},
+						comments: /^!/
+					}
 				},
-				extractComments: false,
-			}),
-		],
+				extractComments: false
+			} )
+		]
 	},
 
 	plugins: [
-		new CKEditorWebpackPlugin({
-			language: "en",
-			additionalLanguages: "all",
-		}),
-		// Uncomment the following lines if you want to add a license banner.
-		// new webpack.BannerPlugin({
-		//   banner: bundler.getLicenseBanner(),
-		//   raw: true,
-		// }),
+		new CKEditorWebpackPlugin( {
+			language: 'en',
+			additionalLanguages: 'all'
+		} )
 	],
 
 	module: {
 		rules: [
 			{
 				test: /\.svg$/,
-				use: ["raw-loader"],
+				use: [ 'raw-loader' ]
 			},
 			{
 				test: /\.css$/,
 				use: [
 					{
-						loader: "style-loader",
+						loader: 'style-loader',
 						options: {
-							injectType: "singletonStyleTag",
+							injectType: 'singletonStyleTag',
 							attributes: {
-								"data-cke": true,
-							},
-						},
+								'data-cke': true
+							}
+						}
 					},
 					{
-						loader: "postcss-loader",
-						options: styles.getPostCssConfig({
+						loader: 'postcss-loader',
+						options: styles.getPostCssConfig( {
+
 							themeImporter: {
 								themePath: require.resolve(
-									"@ckeditor/ckeditor5-theme-lark",
-								),
+									'@ckeditor/ckeditor5-theme-lark',
+								)
 							},
-							minify: true,
-						}),
-					},
-				],
-			},
-		],
-	},
+							minify: true
+						} )
+					}
+				]
+			}
+		]
+	}
 };
